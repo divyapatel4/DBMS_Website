@@ -1,0 +1,26 @@
+html,
+body {
+    min-height: 100%;
+    background: rgb(143, 203, 243);
+}
+
+
+
+.mxgraph{
+    max-width:100%;
+    background: white;
+    border:1px solid transparent;
+}
+
+#form1{
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  align-content: left;
+  background: #fff;
+  padding: 30px;
+  width: 100%;
+  position: relative;
+  padding: 0px;
+  text-align: left;
+  /* font jumbotron */
+}

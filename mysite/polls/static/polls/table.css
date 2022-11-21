@@ -1,0 +1,21 @@
+
+
+
+
+.mxgraph{
+    max-width:100%;
+    background: white;
+    border:1px solid transparent;
+}
+
+#form1{
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  align-content: center;
+  background: #fff;
+  padding: 30px;
+  width: 100%;
+  position: relative;
+  padding: 0px;
+  text-align: center;
+}
