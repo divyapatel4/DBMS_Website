@@ -26,14 +26,14 @@
                     <input hidden type="text" name="tables" value="{{key}}" readonly="readonly">
                     {% for col in cols%}
                         <label for="{{key}}.{{col}}">{{col}}</label>
-                        <select name="{{key}}.{{col}}.op">
+                        {% comment %} <select name="{{key}}.{{col}}.op">
                         <option value="l">Less than</option>
                         <option value="g">Greater than</option>
                         <option value="le">Less than equal to</option>
                         <option value="ge">Greater than equal to</option>
                         <option value="ee">Equal to</option>
                         <option value="ne">Not equal to</option>
-                        </select>
+                        </select> {% endcomment %}
                         <input type="text" name="{{key}}.{{col}}.val" id="{{col}}">
                     {%endfor%}
                 {% endif %}

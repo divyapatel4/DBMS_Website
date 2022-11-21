@@ -1,0 +1,47 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <title> WildLife Sanctuary </title>
+  </head>
+  <body>
+  <table class = "table table-hover">
+    <thead class= "thead-dark">
+      <th> Name </th>
+      <th> sanctuary ID </th>
+      <th> state </th>
+      <th> District </th>
+      <th> Budget </th>
+      <th> Type </th>
+      <th> Weather </th>
+      <th> Temperature </th>
+      <th> Humidity </th>
+      <th> Percipitation </th>
+      <th> Wind Direction </th>
+    </thead>
+      {% for eml in data %}
+      <tr> 
+        <td>{{ eml.name }}</td>
+        <td>{{ eml.sanctuary_id }}</td>
+        <td>{{ eml.state }}</td>
+        <td>{{ eml.district }}</td>
+        <td>{{ eml.budget }}</td>
+        <td>{{ eml.type }}</td>
+        <td>{{ eml.weather }}</td>
+        <td>{{ eml.temparature }}</td>
+        <td>{{ eml.humidity }}</td>
+        <td>{{ eml.percipitation }}</td>
+        <td>{{ eml.wind_direction }}</td>
+
+      </tr>
+      {% endfor %}
+
+  
+    </table>
+  </body>
+</html>
+
+

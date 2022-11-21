@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%load static%}
+    <link href="{% static 'polls/login.css'%}" rel="stylesheet" > 
+</head>
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+          <h2 class="active"> Sign In </h2>
+          <form action = "login" method = 'post'>
+            {% csrf_token %}
+            <input type="text" id="login" class="fadeIn second" name="User ID" placeholder="login">
+            <input type="text" id="password" class="fadeIn third" name="Password" placeholder="password">
+            <input type="submit" name = "Log In" class="fadeIn fourth" value="Log In">
+          </form>
+        </div>
+    </div>
+</body>
+</html>

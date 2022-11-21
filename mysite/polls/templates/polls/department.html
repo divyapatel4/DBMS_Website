@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <title> Departments </title>
+  </head>
+  <body>
+    <table class = "table table-hover">
+      <thead class= "thead-dark">
+        <th>Department Name</th>
+        <th>Department ID</th>
+      </thead>
+      {% for dep in data %}
+        <tr> 
+          <td>{{dep.department_id}}</td>
+          <td>{{dep.department_name}}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
+
+

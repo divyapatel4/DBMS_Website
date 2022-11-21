@@ -1,0 +1,33 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <title> Sighted </title>
+  </head>
+  <body>
+  <table class = "table table-hover">
+    <thead class= "thead-dark">
+      <th> Date </th>
+      <th> Time </th>
+      <th> Citizen ID </th>
+      <th> Animal Species </th>
+    </thead>
+      {% for eml in data %}
+      <tr> 
+        <td>{{ eml.date }}</td>
+        <td>{{ eml.time }}</td>
+        <td>{{ eml.citizen_id }}</td>
+        <td>{{ eml.animal_name.species_name.name }}</td>
+
+      </tr>
+      {% endfor %}
+
+  
+    </table>
+  </body>
+</html>
+
+

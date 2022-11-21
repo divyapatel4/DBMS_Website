@@ -1,0 +1,39 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <title> Species Data </title>
+  </head>
+  <body>
+  <table class = "table table-hover">
+    <thead class= "thead-dark">
+      <th> Name </th>
+      <th> population </th>
+      <th> trend  </th>
+      <th> male female ratio </th>
+      <th> birth rate </th>
+      <th> life expectancy </th>
+      <th> reamarks </th>
+    </thead>
+      {% for eml in data %}
+      <tr> 
+        <td>{{ eml.name }}</td>
+        <td>{{ eml.population }}</td>
+        <td>{{ eml.trend }}</td>
+        <td>{{ eml.male_female_ration }}</td>
+        <td>{{ eml.birth_rate }}</td>
+        <td>{{ eml.life_expectancy }}</td>
+        <td>{{ eml.remarks }}</td>
+
+      </tr>
+      {% endfor %}
+
+  
+    </table>
+  </body>
+</html>
+
+

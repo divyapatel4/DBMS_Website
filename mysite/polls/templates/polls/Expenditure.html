@@ -1,0 +1,41 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title> Expenditure </title>
+    
+    
+  </head>
+  <body>
+    <table class = "table table-hover">
+      <thead class= "thead-dark">
+          <th>Item</th>
+          <th>Invoice ID</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Sanctuary_ID</th>
+          <th>Emp ID</th>
+          <th>Emp Name</th>
+      </thead>
+        {% for anml in data %}
+        <tr> 
+          <td>{{ anml.item.item }}</td>
+          <td>{{ anml.invoice_id }}</td>
+          <td>{{ anml.quantity }}</td>
+          <td>{{ anml.price }}</td>
+          <td>{{ anml.sanctuary.sanctuary_id }}</td>
+          <td>{{ anml.emp.emp_id}}</td>
+          <td>{{ anml.emp.name}}</td>
+        </tr>
+        {% endfor %}
+        
+  
+  
+      </table>
+  </body>
+</html>
+
+

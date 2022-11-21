@@ -5,20 +5,30 @@ from django.template import loader
 from django.contrib import messages
 from . import check_funcs
 from . import schema
-from polls.models import Animal
+from polls.models import *
 
 def comp(inp1, inp2, op):
     if op=='l' and inp1<inp2:
         return True
-    else if op
+    elif op =='l' and inp1>=inp2:
+        return False
+    elif op=='g' and inp1>inp2:
+        return True
+    elif op=='g' and inp1<=inp2:
+        return False
+    elif op=='e' and inp1==inp2:
+        return True
+    elif op=='e' and inp1!=inp2:
+        return False
+    
     
 
 # DBMS_Website/mysite/polls/models.py
 
 def index(request):
-    showall =Animal.objects.all()
+    showall =Staff.objects.all()
     print(showall)
-    return render(request, 'polls/index.html', {"data": showall})
+    return render(request, 'polls/staff.html', {"data": showall})  
 
 
 def login(request):
@@ -46,13 +56,56 @@ def form(request):
             Args = request.POST.getlist('args')
             print(Args, len(Args))
             if check_funcs.CheckQuery(tables, Type_of_Query, Args) == True:
-                context = {'schema': schema.schema, 'args': tables}
-                template = loader.get_template('polls/form1.html')
-                return HttpResponse(template.render(context, request))
+                if Type_of_Query[0] == "View":
+                    if tables[0] == "visitor":
+                        showall = Visitor.objects.all()
+                        return render(request, 'polls/Visitor.html', {"data": showall})
+                    elif tables[0] == "animal":
+                        showall = Animal.objects.all()
+                        return render(request, 'polls/animal.html', {"data": showall})
+                    elif tables[0] == "species_data":
+                        showall = SpeciesData.objects.all()
+                        return render(request, 'polls/SpeciesData.html', {"data": showall})
+                    elif tables[0] == "wildlife_sanctuary":
+                        showall = WildlifeSanctuary.objects.all()
+                        return render(request, 'polls/wildlifesanctuary.html', {"data": showall})
+                    elif tables[0] == "expenditure":
+                        showall = Expenditure.objects.all()
+                        return render(request, 'polls/Expenditure.html', {"data": showall})
+                    elif tables[0] == '"Price_List"':
+                        showall = PriceList.objects.all()
+                        return render(request, 'polls/PriceList.html', {"data": showall})
+                    elif tables[0] == '"Department"':
+                        showall = Department.objects.all()
+                        return render(request, 'polls/department.html', {"data": showall})
+                    elif tables[0] == 'patient':
+                        showall = Patient.objects.all()
+                        return render(request, 'polls/patient.html', {"data": showall})
+                    elif tables[0] == 'staff':
+                        showall = Staff.objects.all()
+                        return render(request, 'polls/staff.html', {"data": showall})
+                    elif tables[0] == '"Mobile_Number"':
+                        showall = MobileNo.objects.all()
+                        return render(request, 'polls/mobile_no.html', {"data": showall})
+                    elif tables[0] == 'sighted':
+                        showall = Sighted.objects.all()
+                        return render(request, 'polls/sighted.html', {"data": showall})
+                    elif tables[0] == 'visited':
+                        showall = Visited.objects.all()
+                        return render(request, 'polls/visited.html', {"data": showall})
+                    else:
+                        #prey_upon
+                        showall = PreysUpon.objects.all()
+                        return render(request, 'polls/preys_upon.html', {"data": showall})
+                else:
+                    context = {'schema': schema.schema, 'args': tables}
+                    template = loader.get_template('polls/form1.html')
+                    return HttpResponse(template.render(context, request))
             else:
                 return HttpResponse('Invalid Query')
         else:
             print(request.POST)
+            InsertAnimal(request)
             return HttpResponse("Hello")
     else:
         context = {'foo': 'bar'}
@@ -74,19 +127,19 @@ def results(request):
     return HttpResponse(template.render(context, request))
 
 
-# def InsertAnimal(request):
-#     if request.method == 'POST':
-#         if request.POST.get('animal_name') and request.POST.get('species_name') and request.POST.get('Sanctuary_ID') and request.POST.get('Health') and request.POST.get('Age') and request.POST.get('Gender'):
-#             animal = Animal()
-#             animal.animal_name = request.POST.get('animal_name')
-#             animal.species_name = request.POST.get('species_name')
-#             animal.Sanctuary_ID = request.POST.get('Sanctuary_ID')
-#             animal.Health = request.POST.get('Health')
-#             animal.Age = request.POST.get('Age')
-#             animal.Gender = request.POST.get('Gender')
-#             animal.save()
-#             return render(request, 'polls/insert.html')
-#         else:
-#             return HttpResponse("Invalid Insert")
-#     else:
-#         return render(request, 'polls/insert.html')
+def InsertAnimal(request):
+    if request.method == 'POST':
+        if request.POST.get('animal_name') and request.POST.get('species_name') and request.POST.get('Sanctuary_ID') and request.POST.get('Health') and request.POST.get('Age') and request.POST.get('Gender'):
+            animal = Animal()
+            animal.animal_name = request.POST.get('animalanimal_name')
+            animal.species_name = request.POST.get('animal.species_name.val')
+            animal.Sanctuary_ID = request.POST.get('animal."Sanctuary_ID".val')
+            animal.Health = request.POST.get('animal.Health.val')
+            animal.Age = request.POST.get('animal.Age.val')
+            animal.Gender = request.POST.get('animal."Gender".val')
+            animal.save()
+            return render(request, 'polls/insert.html')
+        else:
+            return HttpResponse("Invalid Insert")
+    else:
+        return render(request, 'polls/insert.html')

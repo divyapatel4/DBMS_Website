@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <ul>
+        {% for key, cols in  schema.items%}
+            {% for t in args%}
+                {%if key == t%}
+                    {% for col in cols%}
+                        <li>{{col}}</li>
+                    {%endfor%}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </ul> -->
+    <form action = "form" method="post">
+        {% csrf_token %}
+        {% for key, cols in  schema.items%}
+            {% for t in args%}
+                {%if key == t%}
+                    <input hidden type="text" name="tables" value="{{key}}" readonly="readonly">
+                    {% for col in cols%}
+                        <label for="{{key}}.{{col}}">{{col}}</label>
+                        <select name="{{key}}.{{col}}.op">
+                        <option value="l">Less than</option>
+                        <option value="g">Greater than</option>
+                        <option value="le">Less than equal to</option>
+                        <option value="ge">Greater than equal to</option>
+                        <option value="ee">Equal to</option>
+                        <option value="ne">Not equal to</option>
+                        </select>
+                        <input type="text" name="{{key}}.{{col}}.val" id="{{col}}">
+                    {%endfor%}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        <input type="submit" name = "submit" value="submit">
+    </form>
+</body>
+</html>
