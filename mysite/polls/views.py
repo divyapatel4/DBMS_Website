@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.template import loader
 from django.contrib import messages
 from . import check_funcs
+from . import schema
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
@@ -31,7 +32,7 @@ def form(request):
         Args = request.POST.getlist('args')
         print(Args, len(Args))
         if check_funcs.CheckQuery(tables, Type_of_Query,Args)==True:    
-            context = {'foo': tables}
+            context = {'schema': schema.schema, 'args': tables}
             template = loader.get_template('polls/form1.html')   
             return HttpResponse(template.render(context, request))
         else:

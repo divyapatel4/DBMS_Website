@@ -8,8 +8,11 @@
 </head>
 <body>
     <ul>
-        {% for table in foo %}
+        {% for table in  schema%}
             <li>{{ table }}</li>
+            {%for  field in %}
+                <li>{{ field }}</li>
+            {%endfor%}
         {% endfor %}
     </ul>
 </body>
