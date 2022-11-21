@@ -30,8 +30,10 @@ def form(request):
         print(Type_of_Query, len(Type_of_Query))
         Args = request.POST.getlist('args')
         print(Args, len(Args))
-        if check_funcs.CheckQuery(tables, Type_of_Query,Args)==True:
-            return HttpResponseRedirect('results')
+        if check_funcs.CheckQuery(tables, Type_of_Query,Args)==True:    
+            context = {'foo': tables}
+            template = loader.get_template('polls/form1.html')   
+            return HttpResponse(template.render(context, request))
         else:
             return HttpResponse('Invalid Query')
     else:

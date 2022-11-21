@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <p>{{foo}}</p>
+    <ul>
+        {% for table in foo %}
+            <li>{{ table }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
