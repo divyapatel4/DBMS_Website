@@ -6,17 +6,28 @@ from django.contrib import messages
 from . import check_funcs
 from . import schema
 from polls.models import animal
+from polls.models import Visitor
+from polls.models import Species_data
+from polls.models import wildlife_sanctuary
+from polls.models import expenditure
+from polls.models import price_list
+from polls.models import department
+from polls.models import patient
+from polls.models import staff
+from polls.models import mobile_no
+from polls.models import email_id
+from polls.models import sighted
+from polls.models import visited
+from polls.models import preys_upon
+
+
 
 
 # DBMS_Website/mysite/polls/models.py
 
 def index(request):
-    # Open index.html from the template folder
     showall = animal.objects.all()
     return render(request, 'polls/index.html', {"data": showall})
-    # context = {'foo': 'bar'}
-    # template = loader.get_template('polls/index.html')
-    # return HttpResponse(template.render(context, request))
 
 
 def login(request):
