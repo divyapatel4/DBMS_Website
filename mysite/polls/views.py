@@ -7,13 +7,17 @@ from . import check_funcs
 from . import schema
 from polls.models import Animal
 
-
+def comp(inp1, inp2, op):
+    if op=='l' and inp1<inp2:
+        return True
+    else if op
+    
 
 # DBMS_Website/mysite/polls/models.py
 
 def index(request):
     showall =Animal.objects.all()
-    # print(showall)
+    print(showall)
     return render(request, 'polls/index.html', {"data": showall})
 
 

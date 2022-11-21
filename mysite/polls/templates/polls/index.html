@@ -14,11 +14,11 @@
         <th>Age </th>
         <th> Gender</th>
       </tr>
-      {% for anml in animal %}
+      {% for anml in data %}
       <tr> 
         <td>{{ anml.animal_name }}</td>
         <td>{{ anml.species_name }}</td>
-        <td>{{ anml.Sanctuary_ID }}</td>
+        <td>{{ anml.sanctuary }}</td>
         <td>{{ anml.health }}</td>
         <td>{{ anml.Age }}</td>
         <td>{{ anml.gender}}</td>
