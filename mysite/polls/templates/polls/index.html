@@ -1,15 +1,4 @@
-{% comment %} class Animal(models.Model):
-    animal_name = models.CharField(max_length=200)
-    species_name = models.ForeignKey('Species_data', on_delete=models.DO_NOTHING)
-    Sanctuary_ID = models.ForeignKey('Sanctuary', on_delete=models.DO_NOTHING)
-    Health = models.CharField(max_length=200)
-    Age = models.IntegerField
-    Gender = models.CharField(max_length=200)
-    # Foreign key is (Sanctuary_ID, species_name)
 
-    class Meta:
-        unique_together = ('animal_name')
-        db_table = 'animal' {% endcomment %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,14 +14,14 @@
         <th>Age </th>
         <th> Gender</th>
       </tr>
-      {% for animal in animals %}
+      {% for anml in animal %}
       <tr> 
-        <td>{{ animal.animal_name }}</td>
-        <td>{{ animal.species_name }}</td>
-        <td>{{ animal.Sanctuary_ID }}</td>
-        <td>{{ animal.Health }}</td>
-        <td>{{ animal.Age }}</td>
-        <td>{{ animal.Gender}}</td>
+        <td>{{ anml.animal_name }}</td>
+        <td>{{ anml.species_name }}</td>
+        <td>{{ anml.Sanctuary_ID }}</td>
+        <td>{{ anml.health }}</td>
+        <td>{{ anml.Age }}</td>
+        <td>{{ anml.gender}}</td>
       </tr>
       {% endfor %}
       

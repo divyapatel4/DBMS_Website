@@ -1,22 +1,24 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect
-from django.urls import reverse
 from django.template import loader
 from django.contrib import messages
-
 from . import check_funcs
 from . import schema
 
+
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    # Open index.html from the template folder
+    context = {'foo': 'bar'}
+    template = loader.get_template('polls/index.html')
+    return HttpResponse(template.render(context, request))
+
 
 def login(request):
     if request.method == 'POST':
         User_ID = request.POST['User ID']
         Password = request.POST['Password']
-        if check_funcs.CheckLogin(User_ID, Password)==True:
+        if check_funcs.CheckLogin(User_ID, Password) == True:
             return HttpResponseRedirect('form')
         else:
             return HttpResponse("Invalid Login Credentials")
@@ -25,32 +27,58 @@ def login(request):
         template = loader.get_template('polls/login.html')
         return HttpResponse(template.render(context, request))
 
+
 def form(request):
     if request.method == 'POST':
-        print(request.POST.getlist('submit'))
-        if request.POST.getlist('submit')[0] == 'submit':
-            print("Hello")
-            print(request.POST.getlist)
-            return HttpResponse('Hello')
+        print(request.POST)
+        tables = request.POST.getlist('table')
+        print(tables, len(tables))
+        Type_of_Query = request.POST.getlist('Type_of_Query')
+        print(Type_of_Query, len(Type_of_Query))
+        Args = request.POST.getlist('args')
+        print(Args, len(Args))
+        if check_funcs.CheckQuery(tables, Type_of_Query, Args) == True:
+            context = {'schema': schema.schema, 'args': tables}
+            template = loader.get_template('polls/form1.html')
+            return HttpResponse(template.render(context, request))
         else:
-            tables = request.POST.getlist('table')
-            print(tables, len(tables))
-            Type_of_Query = request.POST.getlist('Type_of_Query')
-            print(Type_of_Query, len(Type_of_Query))
-            Args = request.POST.getlist('args')
-            print(Args, len(Args))
-            if check_funcs.CheckQuery(tables, Type_of_Query,Args)==True:    
-                context = {'schema': schema.schema, 'args': tables}
-                template = loader.get_template('polls/form1.html')
-                return HttpResponse(template.render(context, request))
-            else:
-                return HttpResponse('Invalid Query')
+            return HttpResponse('Invalid Query')
     else:
         context = {'foo': 'bar'}
-        template = loader.get_template('polls/form.html')   
+        template = loader.get_template('polls/form.html')
         return HttpResponse(template.render(context, request))
+
+
+def get_args(request):
+    print("Hello1")
+    print("Hello2")
+    context = {'foo': 'bar'}
+    template = loader.get_template('polls/form1.html')
+    return HttpResponse(template.render(context, request))
+
 
 def results(request):
     context = {'foo': 'bar'}
     template = loader.get_template('polls/table.html')
     return HttpResponse(template.render(context, request))
+
+
+def InsertAnimal(request):
+    if request.method == 'POST':
+        if request.POST.get('animal_name') and request.POST.get('species_name') and request.POST.get('Sanctuary_ID') and request.POST.get('Health') and request.POST.get('Age') and request.POST.get('Gender'):
+            animal = Animal()
+            animal.animal_name = request.POST.get('animal_name')
+            animal.species_name = request.POST.get('species_name')
+            animal.Sanctuary_ID = request.POST.get('Sanctuary_ID')
+            animal.Health = request.POST.get('Health')
+            animal.Age = request.POST.get('Age')
+            animal.Gender = request.POST.get('Gender')
+            animal.save()
+            return render(request, 'polls/insert.html')
+        else:
+            return HttpResponse("Invalid Insert")
+    else:
+        return render(request, 'polls/insert.html')
+
+            
+

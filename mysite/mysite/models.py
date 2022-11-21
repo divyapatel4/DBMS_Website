@@ -9,15 +9,16 @@ class Visitor(models.Model):
     District = models.CharField(max_length=200)
     # Primary key is (nation, citizen_id)
     class Meta:
+        managed = False
         unique_together = ('nation', 'citizen_id')
-        db_table = 'visitor'
+        db_table = 'wildlife_db\".\"visitor'
 
 
 # CREATE TABLE IF NOT EXISTS wildlife_db. animal
 # animal_name character varying COLLATE pg_catalog."default" NOT NULL,
 # species_name character varying COLLATE pg_catalog. "default" NOT NULL,
 # "Sanctuary_ID" bigint NOT NULL,
-# "Health" character varying COLLATE pg_catalog."default" NOT NULL,
+# "health" character varying COLLATE pg_catalog."default" NOT NULL,
 # "Age" integer NOT NULL,
 # "Gender" character varying COLLATE pg_catalog. "default" NOT NULL,
 # CONSTRAINT "Animal_pkey" PRIMARY KEY(animal_name),
@@ -36,18 +37,19 @@ class Visitor(models.Model):
 # ALTER TABLE IF EXISTS wildlife_db. animal
 # OWNER to postgres
 
-class Animal(models.Model):
+class animal(models.Model):
     animal_name = models.CharField(max_length=200)
     species_name = models.ForeignKey('Species_data', on_delete=models.DO_NOTHING)
     Sanctuary_ID = models.ForeignKey('Sanctuary', on_delete=models.DO_NOTHING)
-    Health = models.CharField(max_length=200)
+    health = models.CharField(max_length=200)
     Age = models.IntegerField
-    Gender = models.CharField(max_length=200)
+    gender = models.CharField(max_length=200)
     # Foreign key is (Sanctuary_ID, species_name)
 
     class Meta:
+        managed = False
         unique_together = ('animal_name')
-        db_table = 'animal'
+        db_table = 'wildlife_db\".\"animal'
 
 
 # CREATE TABLE IF NOT EXISTS wildlife_db. species_data
@@ -73,8 +75,9 @@ class Species_data(models.Model):
     life_expectancy = models.IntegerField
     Remarks = models.CharField(max_length=200)
     class Meta:
+        managed = False
         unique_together = ('name')
-        db_table = 'species_data'
+        db_table = 'wildlife_db\".\"species_data'
 
 
 # CREATE TABLE IF NOT EXISTS wildlife_db. wildlife_sanctuary
@@ -108,8 +111,9 @@ class wildlife_sanctuary(models.Model):
     percipitation = models.FloatField
     wind_direction = models.CharField(max_length=200)
     class Meta:
+        managed = False
         unique_together = ('sanctuary_id')
-        db_table = 'wildlife_sanctuary'
+        db_table = 'wildlife_db\".\"wildlife_sanctuary'
         
         
 # CREATE TABLE IF NOT EXISTS wildlife_db. expenditure
@@ -146,8 +150,9 @@ class expenditure(models.Model):
     sanctuary_id = models.ForeignKey('wildlife_sanctuary', on_delete=models.DO_NOTHING)
     Emp_ID = models.ForeignKey('Staff', on_delete=models.DO_NOTHING)
     class Meta:
+        managed = False
         unique_together = ('Invoice_ID')
-        db_table = 'expenditure'
+        db_table = 'wildlife_db\".\"expenditure'
 
 
 # CREATE TABLE IF NOT EXISTS public. "Price_List"
@@ -159,12 +164,13 @@ class expenditure(models.Model):
 # ALTER TABLE IF EXISTS public. "Price_List"
 # OWNER I to postgres
 
-class Price_List(models.Model):
+class price_list(models.Model):
     Item = models.CharField(max_length=200)
-    Rate = models.FloatField
+    rate = models.FloatField
     class Meta:
+        managed = False
         unique_together = ('Item')
-        db_table = 'Price_List'
+        db_table = 'public\".\"price_list'
 
 
 # CREATE TABLE IF NOT EXISTS public. "Department"
@@ -175,12 +181,13 @@ class Price_List(models.Model):
 # ALTER TABLE IF EXISTS public. "Department"
 # OWNER to postgres
 
-class Department(models.Model):
-    Department_Name = models.CharField(max_length=200)
-    Department_ID = models.IntegerField
+class department(models.Model):
+    department_name = models.CharField(max_length=200)
+    department_id = models.IntegerField
     class Meta:
-        unique_together = ('Department_ID')
-        db_table = 'Department'
+        managed = False
+        unique_together = ('department_id')
+        db_table = 'public\".\"department'
         
 
 # CREATE TABLE IF NOT EXISTS wildlife_db.patient
@@ -214,8 +221,9 @@ class patient(models.Model):
     Disease = models.CharField(max_length=200)
     History_of_illness = models.CharField(max_length=200)
     class Meta:
+        managed = False
         unique_together = ('Animal_Name')
-        db_table = 'patient'
+        db_table = 'wildlife_db\".\"patient'
 
 
 # CREATE TABLE IF NOT EXISTS wildlife_db.staff
@@ -252,8 +260,10 @@ class staff(models.Model):
     Block = models.IntegerField
     department_id = models.ForeignKey('Department', on_delete=models.DO_NOTHING,on_update=models.DO_NOTHING)
     class Meta:
+        managed = False
         unique_together = ('emp_id')
-        db_table = 'staff'
+        db_table = 'wildlife_db\".\"staff'
+
         
 
 # CREATE TABLE IF NOT EXISTS public. "Mobile_Number"
@@ -271,12 +281,14 @@ class staff(models.Model):
 # OWNER to postgres
 
 
-class Mobile_Number(models.Model):
-    Emp_ID = models.ForeignKey('Staff', on_delete=models.DO_NOTHING)
-    Mobile_No = models.IntegerField
+class mobile_no(models.Model):
+    emp_id = models.ForeignKey('staff', on_delete=models.DO_NOTHING)
+    mobile_number = models.IntegerField
     class Meta:
-        unique_together = ('Mobile_No')
-        db_table = 'Mobile_Number'
+        managed = False
+        unique_together = ('mobile_number')
+        db_table = 'wildlife_db\".\"mobile_no'
+        
         
 
 # CREATE TABLE IF NOT EXISTS public. "Email_ID"
@@ -293,13 +305,14 @@ class Mobile_Number(models.Model):
 # ALTER TABLE IF EXISTS public. "Email_ID"
 # OWNER to postgres
 
-class Email_ID(models.Model):
-    Email_ID = models.CharField(max_length=200)
-    Emp_ID = models.ForeignKey('Staff', on_delete=models.DO_NOTHING)
+class email_id(models.Model):
+    email_id = models.CharField(max_length=200)
+    emp_id = models.ForeignKey('staff', on_delete=models.DO_NOTHING)
     class Meta:
-        unique_together = ('Email_ID')
-        db_table = 'Email_ID'
-
+        managed = False
+        unique_together = ('email_id')
+        db_table = 'wildlife_db\".\"email_id'
+        
 
 class sighted(models.Model):
     Date = models.DateField
@@ -309,8 +322,9 @@ class sighted(models.Model):
     Citizen_ID = models.ForeignKey('visitor', on_delete=models.DO_NOTHING)
     Animal_Name = models.ForeignKey('animal', on_delete=models.DO_NOTHING)
     class Meta:
+        managed = False
         unique_together = ('Nation', 'Citizen_ID', 'Animal_Name')
-        db_table = 'sighted'
+        db_table = 'wildlife_db\".\"sighted'
         
 
 # CREATE TABLE IF NOT EXISTS wildlife db. visited
@@ -335,13 +349,14 @@ class sighted(models.Model):
 # OWNER to postgres
 
 class visited(models.Model):
-    Date = models.DateField
+    date = models.DateField
     nation = models.ForeignKey('visitor', on_delete=models.DO_NOTHING)
     citizen_id = models.ForeignKey('visitor', on_delete=models.DO_NOTHING)
     sanctuary_id = models.ForeignKey('wildlife_sanctuary', on_delete=models.DO_NOTHING)
     class Meta:
-        unique_together = ('Citizen_ID', 'Nation', 'Sanctuary_ID')
-        db_table = 'visited'
+        managed = False
+        unique_together = ('citizen_id', 'nation', 'sanctuary_id')
+        db_table =  'wildlife_db\".\"visited'
         
 
 # CREATE TABLE IF NOT EXISTS wildlife_db.preys_upon
@@ -367,6 +382,7 @@ class preys_upon(models.Model):
     pred_species = models.ForeignKey('species_data', on_delete=models.DO_NOTHING)
     prey_species = models.ForeignKey('species_data', on_delete=models.DO_NOTHING)
     class Meta:
+        managed = False
         unique_together = ('pred_species', 'prey_species')
-        db_table = 'preys_upon'
+        db_table = 'wildlife_db\".\"preys_upon'
         
