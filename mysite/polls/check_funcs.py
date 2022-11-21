@@ -5,7 +5,7 @@ def CheckLogin(User_ID, Password):
         return False
 
 def CheckQuery(table, Type_of_Query, Args):
-    print(table, Type_of_Query, Args)
+    if len(table) == 0: return False
     if len(Type_of_Query)==1:
         if Type_of_Query=='Insert':
             if len(table)==1:

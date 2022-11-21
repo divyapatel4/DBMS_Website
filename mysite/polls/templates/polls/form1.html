@@ -7,13 +7,30 @@
     <title>Document</title>
 </head>
 <body>
-    <ul>
-        {% for table in  schema%}
-            <li>{{ table }}</li>
-            {%for  field in %}
-                <li>{{ field }}</li>
-            {%endfor%}
+    <!-- <ul>
+        {% for key, cols in  schema.items%}
+            {% for t in args%}
+                {%if key == t%}
+                    {% for col in cols%}
+                        <li>{{col}}</li>
+                    {%endfor%}
+                {% endif %}
+            {% endfor %}
         {% endfor %}
-    </ul>
+    </ul> -->
+    <form action = "form" method="post">
+        {% csrf_token %}
+        {% for key, cols in  schema.items%}
+            {% for t in args%}
+                {%if key == t%}
+                    {% for col in cols%}
+                        <label for="{{col}}">{{col}}</label>
+                        <input type="text" name="{{key}}.{{col}}" id="{{col}}">
+                    {%endfor%}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        <input type="submit" name = "submit" value="submit">
+    </form>
 </body>
 </html>
