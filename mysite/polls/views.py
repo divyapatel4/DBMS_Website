@@ -5,28 +5,15 @@ from django.template import loader
 from django.contrib import messages
 from . import check_funcs
 from . import schema
-from polls.models import animal
-from polls.models import Visitor
-from polls.models import Species_data
-from polls.models import wildlife_sanctuary
-from polls.models import expenditure
-from polls.models import price_list
-from polls.models import department
-from polls.models import patient
-from polls.models import staff
-from polls.models import mobile_no
-from polls.models import email_id
-from polls.models import sighted
-from polls.models import visited
-from polls.models import preys_upon
-
+from polls.models import Animal
 
 
 
 # DBMS_Website/mysite/polls/models.py
 
 def index(request):
-    showall = animal.objects.all()
+    showall =Animal.objects.all()
+    # print(showall)
     return render(request, 'polls/index.html', {"data": showall})
 
 
@@ -82,7 +69,7 @@ def results(request):
 def InsertAnimal(request):
     if request.method == 'POST':
         if request.POST.get('animal_name') and request.POST.get('species_name') and request.POST.get('Sanctuary_ID') and request.POST.get('Health') and request.POST.get('Age') and request.POST.get('Gender'):
-            animal = Animal()
+            animal = animal()
             animal.animal_name = request.POST.get('animal_name')
             animal.species_name = request.POST.get('species_name')
             animal.Sanctuary_ID = request.POST.get('Sanctuary_ID')
