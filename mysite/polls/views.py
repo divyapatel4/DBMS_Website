@@ -6,6 +6,9 @@ from django.contrib import messages
 from . import check_funcs
 from . import schema
 from polls.models import *
+# OG View
+
+
 
 def comp(inp1, inp2, op):
     if op=='l' and inp1<inp2:
@@ -128,15 +131,21 @@ def results(request):
 
 
 def InsertAnimal(request):
+    print("Inside")
     if request.method == 'POST':
-        if request.POST.get('animal_name') and request.POST.get('species_name') and request.POST.get('Sanctuary_ID') and request.POST.get('Health') and request.POST.get('Age') and request.POST.get('Gender'):
+        print("Inside")
+        # Print value at Animal_name key in form
+        print(request.POST.getlist('animal_name'))
+
+        if request.POST.get('Animal_name') and request.POST.get('species_name') and request.POST.get('Sanctuary_ID') and request.POST.get('Health') and request.POST.get('Age') and request.POST.get('Gender'):
+            print("Inside")
             animal = Animal()
-            animal.animal_name = request.POST.get('animal_name')
+            animal.animal_name = request.POST.get('Animal_name')
             animal.species_name = request.POST.get('species_name')
-            animal.sanctuary = request.POST.get('sanctuary')
-            animal.health = request.POST.get('health')
+            animal.sanctuary = request.POST.get('Sanctuary_ID')
+            animal.health = request.POST.get('Health')
             animal.Age = request.POST.get('Age')
-            animal.gender = request.POST.get('gender')
+            animal.gender = request.POST.get('Gender')
             animal.save()
             mess = "Animal Inserted"
             return render(request, 'polls/form.html', {"mess": mess})

@@ -20,4 +20,5 @@ urlpatterns = [
     path('login', views.login, name='login'),
     path('form', views.form, name='form'),
     path('results', views.results, name='results'),
+    path('insert', views.InsertAnimal, name='insert'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
