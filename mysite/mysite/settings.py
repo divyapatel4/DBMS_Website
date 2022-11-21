@@ -54,7 +54,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [r'C:\Users\Kunj R. Patel\Desktop\DBMS website\mysite\polls\templates'],
+        'DIRS': [r'C:\Users\Kunj R. Patel\Desktop\Git_connected\DBMS_Website\mysite\polls\templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,7 +118,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    r'C:\Users\Kunj R. Patel\Desktop\DBMS website\mysite\polls\static',
+    r'C:\Users\Kunj R. Patel\Desktop\Git_connected\DBMS_Website\mysite\polls\static',
     
 ]
 

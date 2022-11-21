@@ -39,6 +39,14 @@ def form(request):
         template = loader.get_template('polls/form.html')   
         return HttpResponse(template.render(context, request))
 
+def get_args(request):
+    print  ("Hello1")
+    print("Hello2")
+    context = {'foo': 'bar'}
+    template = loader.get_template('polls/form1.html')   
+    return HttpResponse(template.render(context, request))
+
+
 def results(request):
     context = {'foo': 'bar'}
     template = loader.get_template('polls/table.html')
