@@ -1,0 +1,49 @@
+{% comment %} class Animal(models.Model):
+    animal_name = models.CharField(max_length=200)
+    species_name = models.ForeignKey('Species_data', on_delete=models.DO_NOTHING)
+    Sanctuary_ID = models.ForeignKey('Sanctuary', on_delete=models.DO_NOTHING)
+    Health = models.CharField(max_length=200)
+    Age = models.IntegerField
+    Gender = models.CharField(max_length=200)
+    # Foreign key is (Sanctuary_ID, species_name)
+
+    class Meta:
+        unique_together = ('animal_name')
+        db_table = 'animal' {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title> Animals </title>
+    <table border = "1">
+      <tr>
+        <th>Animal Name</th>
+        <th>Species Name</th>
+        <th>Sanctuary ID</th>
+        <th>Health</th>
+        <th>Age </th>
+        <th> Gender</th>
+      </tr>
+      {% for animal in animals %}
+      <tr> 
+        <td>{{ animal.animal_name }}</td>
+        <td>{{ animal.species_name }}</td>
+        <td>{{ animal.Sanctuary_ID }}</td>
+        <td>{{ animal.Health }}</td>
+        <td>{{ animal.Age }}</td>
+        <td>{{ animal.Gender}}</td>
+      </tr>
+      {% endfor %}
+      
+
+
+    </table>
+    
+
+  </head>
+  <body>
+  </body>
+</html>
+
+

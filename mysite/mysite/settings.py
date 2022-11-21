@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'DBMS_Website'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +54,9 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [r'C:\Users\Kunj R. Patel\Desktop\Git_connected\DBMS_Website\mysite\polls\templates'],
+        # 'DIRS': [r'C:\Users\Kunj R. Patel\Desktop\Git_connected\DBMS_Website\mysite\polls\templates'],
+        'DIRS': [r'/Users/divya/Documents/Github/DBMS_Website/mysite/polls/templates'],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,7 +79,7 @@ DATABASES = {
     'default': {
         # Postgres SQL
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DBMS_Website',
+        'NAME': 'Wildlife',
         'USER': 'postgres',
         'PASSWORD': 'password',
         'HOST': 'localhost',
@@ -126,7 +127,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    r'C:\Users\Kunj R. Patel\Desktop\Git_connected\DBMS_Website\mysite\polls\static',
+    # r'C:\Users\Kunj R. Patel\Desktop\Git_connected\DBMS_Website\mysite\polls\static',
+    r'/Users/divya/Documents/Github/DBMS_Website/mysite/polls/static',
     
 ]
 
