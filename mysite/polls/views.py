@@ -5,13 +5,18 @@ from django.template import loader
 from django.contrib import messages
 from . import check_funcs
 from . import schema
+from polls.models import animal
 
+
+# DBMS_Website/mysite/polls/models.py
 
 def index(request):
     # Open index.html from the template folder
-    context = {'foo': 'bar'}
-    template = loader.get_template('polls/index.html')
-    return HttpResponse(template.render(context, request))
+    showall = animal.objects.all()
+    return render(request, 'polls/index.html', {"data": showall})
+    # context = {'foo': 'bar'}
+    # template = loader.get_template('polls/index.html')
+    # return HttpResponse(template.render(context, request))
 
 
 def login(request):
@@ -79,6 +84,3 @@ def InsertAnimal(request):
             return HttpResponse("Invalid Insert")
     else:
         return render(request, 'polls/insert.html')
-
-            
-
