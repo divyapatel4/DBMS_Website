@@ -34,18 +34,22 @@ def login(request):
 def form(request):
     if request.method == 'POST':
         print(request.POST)
-        tables = request.POST.getlist('table')
-        print(tables, len(tables))
-        Type_of_Query = request.POST.getlist('Type_of_Query')
-        print(Type_of_Query, len(Type_of_Query))
-        Args = request.POST.getlist('args')
-        print(Args, len(Args))
-        if check_funcs.CheckQuery(tables, Type_of_Query, Args) == True:
-            context = {'schema': schema.schema, 'args': tables}
-            template = loader.get_template('polls/form1.html')
-            return HttpResponse(template.render(context, request))
+        if request.POST.getlist('submit')[0] == 'Submit':
+            tables = request.POST.getlist('table')
+            print(tables, len(tables))
+            Type_of_Query = request.POST.getlist('Type_of_Query')
+            print(Type_of_Query, len(Type_of_Query))
+            Args = request.POST.getlist('args')
+            print(Args, len(Args))
+            if check_funcs.CheckQuery(tables, Type_of_Query, Args) == True:
+                context = {'schema': schema.schema, 'args': tables}
+                template = loader.get_template('polls/form1.html')
+                return HttpResponse(template.render(context, request))
+            else:
+                return HttpResponse('Invalid Query')
         else:
-            return HttpResponse('Invalid Query')
+            print(request.POST)
+            return HttpResponse("Hello")
     else:
         context = {'foo': 'bar'}
         template = loader.get_template('polls/form.html')
@@ -66,19 +70,19 @@ def results(request):
     return HttpResponse(template.render(context, request))
 
 
-def InsertAnimal(request):
-    if request.method == 'POST':
-        if request.POST.get('animal_name') and request.POST.get('species_name') and request.POST.get('Sanctuary_ID') and request.POST.get('Health') and request.POST.get('Age') and request.POST.get('Gender'):
-            animal = animal()
-            animal.animal_name = request.POST.get('animal_name')
-            animal.species_name = request.POST.get('species_name')
-            animal.Sanctuary_ID = request.POST.get('Sanctuary_ID')
-            animal.Health = request.POST.get('Health')
-            animal.Age = request.POST.get('Age')
-            animal.Gender = request.POST.get('Gender')
-            animal.save()
-            return render(request, 'polls/insert.html')
-        else:
-            return HttpResponse("Invalid Insert")
-    else:
-        return render(request, 'polls/insert.html')
+# def InsertAnimal(request):
+#     if request.method == 'POST':
+#         if request.POST.get('animal_name') and request.POST.get('species_name') and request.POST.get('Sanctuary_ID') and request.POST.get('Health') and request.POST.get('Age') and request.POST.get('Gender'):
+#             animal = Animal()
+#             animal.animal_name = request.POST.get('animal_name')
+#             animal.species_name = request.POST.get('species_name')
+#             animal.Sanctuary_ID = request.POST.get('Sanctuary_ID')
+#             animal.Health = request.POST.get('Health')
+#             animal.Age = request.POST.get('Age')
+#             animal.Gender = request.POST.get('Gender')
+#             animal.save()
+#             return render(request, 'polls/insert.html')
+#         else:
+#             return HttpResponse("Invalid Insert")
+#     else:
+#         return render(request, 'polls/insert.html')

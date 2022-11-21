@@ -523,13 +523,3 @@ class Sighted(models.Model):
         db_table = 'sighted'
         unique_together = (('nation', 'citizen_id', 'animal_name'),)
 
-
-
-
-
-
-
-
-
-
-
