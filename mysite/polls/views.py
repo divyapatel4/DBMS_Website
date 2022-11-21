@@ -131,15 +131,15 @@ def InsertAnimal(request):
     if request.method == 'POST':
         if request.POST.get('animal_name') and request.POST.get('species_name') and request.POST.get('Sanctuary_ID') and request.POST.get('Health') and request.POST.get('Age') and request.POST.get('Gender'):
             animal = Animal()
-            animal.animal_name = request.POST.get('animalanimal_name')
-            animal.species_name = request.POST.get('animal.species_name.val')
-            animal.Sanctuary_ID = request.POST.get('animal."Sanctuary_ID".val')
-            animal.Health = request.POST.get('animal.Health.val')
-            animal.Age = request.POST.get('animal.Age.val')
-            animal.Gender = request.POST.get('animal."Gender".val')
+            animal.animal_name = request.POST.get('animal_name')
+            animal.species_name = request.POST.get('species_name')
+            animal.sanctuary = request.POST.get('sanctuary')
+            animal.health = request.POST.get('health')
+            animal.Age = request.POST.get('Age')
+            animal.gender = request.POST.get('gender')
             animal.save()
-            return render(request, 'polls/insert.html')
+            mess = "Animal Inserted"
+            return render(request, 'polls/form.html', {"mess": mess})
         else:
             return HttpResponse("Invalid Insert")
-    else:
-        return render(request, 'polls/insert.html')
+
