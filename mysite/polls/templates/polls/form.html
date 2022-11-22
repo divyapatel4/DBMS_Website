@@ -2,19 +2,68 @@
 <html>
 
 <head>
+    {% comment %} {% comment %} <link rel="stylesheet" href="mystyle.css"> {% endcomment %}
     <title>Wildlife Sanctuary DataBase</title>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet'    type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin" rel="stylesheet">
-    {%load static%}
-    <link href="{% static 'polls/form.css'%}" rel="stylesheet" > 
+    
+    {% comment %}{%load static%} <link href="{% static 'polls/form.css'%}" rel="stylesheet" >  {% endcomment %}
+    <style>
+        .filter-switch label {
+        cursor: pointer;
+        }
+        .filter-switch-item input:checked + label {
+        color: inherit;
+        }
+        .filter-switch-item input:not(:checked) + label {
+        --bg-opacity: 0;
+        box-shadow: none;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    
 </head>
 
+<body class="flex flex-col items-center py-16 bg-gray-100">
+  <ul id="filter1" class="filter-switch inline-flex items-center relative h-10 p-1 space-x-1 bg-gray-200 rounded-md font-semibold text-blue-600 my-4">
+    <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+      <input type="radio" name="filter1" id="filter1-0" class="sr-only" checked>
+      <label for="filter1-0" class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow">
+        All
+      </label>
+      <div aria-hidden="true" class="filter-active"></div>
+    </li>
+    <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+      <input type="radio" name="filter1" id="filter1-1" class="sr-only">
+      <label for="filter1-1" class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow">
+        Upcoming
+      </label>
+    </li>
+    <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+      <input type="radio" name="filter1" id="filter1-2" class="sr-only">
+      <label for="filter1-2" class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow">
+        Ongoing
+      </label>
+    </li>
+    <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+      <input type="radio" name="filter1" id="filter1-3" class="sr-only">
+      <label for="filter1-3" class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow">
+        Complete
+      </label>
+    </li>
+  </ul>
+
+
+</body>
+
+{% comment %} 
 <body>
         <div class="main-block" style="font-family:Ubuntu">
             <form action="form" method = "POST" id = "Qform">
                 {% csrf_token %}
                 <h1>Wildlife Sanctuary DataBase</h1>
+                    
                     <div id = "form1">
                         <legend>
                             <h3>List of tables</h3>
@@ -70,6 +119,6 @@
         {% comment %} <div class="mxgraph" 
             data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2022-11-18T10:37:56.243Z\&quot; agent=\&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36\&quot; etag=\&quot;SsDv3Xng0kzjGEPnwpRc\&quot; version=\&quot;20.5.1\&quot; type=\&quot;google\&quot;&gt;&lt;diagram id=\&quot;PFw0PSDomP1KElhSoZFE\&quot; name=\&quot;relational model\&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}">
         </div>
-        <script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script> {% endcomment %}
+        <script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
 </body>
-</html>
+</html> {% endcomment %}
