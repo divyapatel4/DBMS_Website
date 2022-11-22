@@ -135,17 +135,18 @@ def InsertAnimal(request):
     if request.method == 'POST':
         print("Inside")
         # Print value at Animal_name key in form
-        print(request.POST.getlist('animal_name'))
+        print(request.POST.get('animal.animal_name.val'))
+        print(request.POST.get('animal.species_name.val'))
 
-        if request.POST.get('Animal_name') and request.POST.get('species_name') and request.POST.get('Sanctuary_ID') and request.POST.get('Health') and request.POST.get('Age') and request.POST.get('Gender'):
+        if request.POST.get('animal.animal_name.val') and request.POST.get('animal.species_name.val') and request.POST.get('animal."Sanctuary_ID".val') and request.POST.get('animal."Health".val') and request.POST.get('animal."Age".val') and request.POST.get('animal."Gender".val'):
             print("Inside")
             animal = Animal()
-            animal.animal_name = request.POST.get('Animal_name')
-            animal.species_name = request.POST.get('species_name')
-            animal.sanctuary = request.POST.get('Sanctuary_ID')
-            animal.health = request.POST.get('Health')
-            animal.Age = request.POST.get('Age')
-            animal.gender = request.POST.get('Gender')
+            animal.animal_name = request.POST.get('animal.animal_name.val')
+            animal.species_name = SpeciesData.objects.get(name=request.POST.get('animal.species_name.val'))
+            animal.sanctuary = WildlifeSanctuary.objects.get(sanctuary_id=request.POST.get('animal."Sanctuary_ID".val'))
+            animal.health = request.POST.get('animal."Health".val')
+            animal.Age = request.POST.get('animal."Age".val')
+            animal.gender = request.POST.get('animal."Gender".val')
             animal.save()
             mess = "Animal Inserted"
             return render(request, 'polls/form.html', {"mess": mess})
