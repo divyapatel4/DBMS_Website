@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} Import bootstrap {% endcomment %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>Wildlife Sanctuary DataBase</title>
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
     <style>
@@ -41,14 +43,15 @@
         {% endfor %}
     </ul> -->
     <div id = "form1" style = "font-family:Ubuntu; text-align: center;">
+        
     
         <form action = "form" method="post">
             {% csrf_token %}
             {% for key, cols in  schema.items%}
                 {% for t in args%}
                     {%if key == t%}
-                        <input hidden type="text" name="tables" value="{{key}}" readonly="readonly">
-                        <table >
+                        <input hidden type="text" name="tables" value="{{key}}" readonly="readonly" class = "form-control">
+
 
                         {% for col in cols%}
                             <tr>    
@@ -61,14 +64,17 @@
                             <option value="ee">Equal to</option>
                             <option value="ne">Not equal to</option>
                             </select> {% endcomment %}
-                            <td><input type="text" name="{{key}}.{{col}}.val" id="{{col}}" size = "200"></td>
+                            <input type="text" name="{{key}}.{{col}}.val" id="{{col}}" size = "200" class = "form-control">
+                            </td>
                             </tr>
                         {%endfor%}
-                        </table>
+
                     {% endif %}
                 {% endfor %}
             {% endfor %}
-            <input type="submit" name = "submit" value="submit" >
+            {% comment %} submit button {% endcomment %}
+            <input type="submit" value="submit" class = "btn btn-primary">
+
         </form>
     </div>
 </body>

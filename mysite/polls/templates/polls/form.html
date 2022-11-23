@@ -2,6 +2,8 @@
 <html>
 
 <head>
+  {% comment %} Import bootstrap {% endcomment %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
       
   {% comment %} {% comment %} <link rel="stylesheet" href="mystyle.css"> {% endcomment %}
@@ -26,6 +28,76 @@
         /* font jumbotron */
       }
 
+      .row{
+        width:70vw;
+        position: relative;
+        left: 15vw;
+
+      }
+      .row2{
+        width:70vw;
+        position: relative;
+
+
+      }
+      .switch{
+          position: relative;
+          display: inline-block;
+          width: 60px;
+          height: 34px;
+      }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      input:checked + .slider {
+        background-color: #2196F3;
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+      }
+
+      input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+
     </style>
 </head>
 
@@ -34,14 +106,16 @@
     <div class="main-block" style="font-family:Ubuntu">
         <form action="form" method = "POST" id = "Qform">
             {% csrf_token %}
-            <h1>Wildlife Sanctuary DataBase</h1>
-                
+            <h1 class = "text-center">Wildlife Sanctuary DataBase</h1>
+            {% comment %} Add line  {% endcomment %}
+                <hr style = "height: 5px; background-color: #1885ed; border: 0;">
                 <div id = "form1">
                     <legend>
-                        <h3>List of tables</h3>
+                        <h2 class = "text-center">List of tables</h3>
                     </legend>
-                    <div class="List of tables" >
-                        <input type="checkbox" id="c1" name="table" value="visitor">
+                    {% comment %} Division to display table of 3x5 checkbox in grid  {% endcomment %}
+                    <div class= "row" style:"margin: 20px; padding: 20px;">
+                        {% comment %} <input type="checkbox" id="c1" name="table" value="visitor">
                         <label for="table1" id = "c1"> Visitor</label><br>
                         <input type="checkbox" id="c2" name="table" value="animal">
                         <label for="table1" id="c2"> Animal</label><br>
@@ -68,25 +142,117 @@
                         <input type="checkbox" id="c14" name="table" value="visited">
                         <label for="table1" id="c14"> Visited</label><br>
                         <input type="checkbox" id="c15" name="table" value="prey_upon">
-                        <label for="table1" id="c15"> Prey</label><br>
+                        <label for="table1" id="c15"> Prey</label><br> {% endcomment %}
+                        <table class="table table-bordered">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" id="c1" name="table" value="visitor">
+                                    <label for="table1" id = "c1"> Visitor</label><br>
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="c2" name="table" value="animal">
+                                    <label for="table1" id="c2"> Animal</label><br>
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="c3" name="table" value="species_data">
+                                    <label for="table1" id="c3"> Species Data</label><br>
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="c4" name="table" value="wildlife_sanctuary">
+                                    <label for="table1" id="c4"> Wildife Sanctuary</label><br>
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="c5" name="table" value="expenditure">
+                                    <label for="table1" id="c5"> Expenditure</label><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" id="c6" name="table" value ='"Price_List"'>
+                                    <label for="table1" id="c6"> Price List</label><br>
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="c7" name="table" value='"Department"'>
+                                    <label for="table1" id="c7"> Department</label><br>
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="c8" name="table" value="patient">
+                                    <label for="table1" id="c8"> Patient</label><br>
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="c9" name="table" value="staff">
+                                    <label for="table1" id="c9"> Staff</label><br>
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="c10" name="table" value='"Mobile_Number"'>
+                                    <label for="table1" id="c10"> Mobile No</label><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" id="c11" name="table" value='"Email_ID"'>
+                                    <label for="table1" id="c11"> Email</label><br>
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="c12" name="table" value="sighted">
+                                    <label for="table1" id="c12"> Sighted</label><br>
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="c14" name="table" value="visited">
+                                    <label for="table1" id="c14"> Visited</label><br>
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="c15" name="table" value="prey_upon">
+                                    <label for="table1" id="c15"> Prey</label><br>
+                                </td>
+                            </tr>
+                        </table>
+
                     </div>
                 </div>
                 <div id = "form1">
-                    <legend>
-                        <h3>Query Entry</h3>
-                    </legend>
-                    <div class="Type of Query">
-                        <label>Type of Query</label>
-                            <input type = "checkbox" value="Insert" name="Type_of_Query">Insert</option>
-                            <!-- <label for="Insert">Insert</label> -->
-                            <input type = "checkbox" value="Delete" name = "Type_of_Query">Delete</option>
-                            <!-- <label for="Delete">Delete</label> -->
-                            <input type = "checkbox" value="View" name = "Type_of_Query">View</option>
-                            <!-- <label for="View">View</label> -->
-                    </div>
+                  {% comment %} Align in Centre  {% endcomment %}
+                  <div class = "row">
+                        <label><h3 class="text-center">Type of Query</h3></label>
+
+
+                      <div class="Type of Query">
+                        <br>
+                        {% comment %} <input type = "checkbox" value="Insert" name="Type_of_Query">Insert </option>
+                        <input type = "checkbox" value="Delete" name = "Type_of_Query">Delete</option>
+                        <input type = "checkbox" value="View" name = "Type_of_Query">View</option> {% endcomment %}
+                        {% comment %} 3x1 table grid  {% endcomment %}
+                        <div class = "row2">
+                            <table class = "table">
+                              <thead class = "thead-dark">
+                                <tr>
+                                    <td>
+                                        <input type = "checkbox" value="Insert" name="Type_of_Query">
+                                        <label for="Type_of_Query">Insert</label>
+                                    </td>
+                                    <td>
+                                        <input type = "checkbox" value="Delete" name = "Type_of_Query">
+                                        <label for="Type_of_Query">Delete</label>
+                                    </td>
+                                    <td>
+                                        <input type = "checkbox" value="View" name = "Type_of_Query">
+                                        <label for="Type_of_Query">View</label>
+                                    </td>
+                                </tr>
+                                </thead>
+                              </div>
+                        </table>
+
+                        </div>
+                          </div>
+                          <button type="submit" value = "Submit" name = "submit" class="btn btn-primary btn-lg">Submit</button>
+                        </div>
                 </div>
-            <input type="submit" name = "submit"  value="Submit">
+              </div>
+
         </form>
     </div>
+  </div>
+
   </body>
 </html> 

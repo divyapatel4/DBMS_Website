@@ -1,6 +1,7 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <meta name="theme-color" content="#1885ed">
   <title>Wildlife Sanctuary DataBase</title>
   <script>
@@ -18,16 +19,27 @@
 <div class="header__logo">
   
   <div class="header__menu">
-    <nav id="navbar" class="header__nav collapse">
+    {% comment %} <nav id="navbar" class="header__nav collapse">
       <ul class="header__elenco">
         <li class="header__el"><a href="#" class="header__link">Home</a></li>
         <li class="header__el"><a href="/polls/form" class="header__link">Make Queries</a></li>
 </li>
       </ul>
-    </nav>
+    </nav> {% endcomment %}
   </div>
     </div>
 </header>
+
+
+<h1 style="text-align:center">Welcome to the Wildlife Sanctuary DataBase</h1>
+
+
+<br>
+<hr style = "height: 5px; background-color: #1885ed; border: 0;">
+
+{% comment %} Add big button in centre displaying Run Queries <a href="/polls/form" class="header__link">Run Queries</a> {% endcomment %}
+<a href="/polls/form" class="header__link"><button class="button-36" role="button" align > Run Query </button></a>
+
 
 <div class="sect sect--padding-bottom">
 <div class="container">
@@ -36,10 +48,21 @@
       Current Stats<br>
     </h1>
   </div>
-
+  
   <div class="row row--center">
     <div class="col-md-4 col-sm-4 price-box price-box--purple">
       <div class="price-box__wrap">
+        <h2 class="price-box__title">Species Population over all Wildlife Sanctuaries</h2>
+      
+      <image src = "{% static 'polls/Data/population.png' %}" >
+      </div>
+    </div>
+  </div>
+  <div class="row row--center">
+    <div class="col-md-4 col-sm-4 price-box price-box--purple">
+      <div class="price-box__wrap">
+        {% comment %} add title departments  {% endcomment %}
+        <h2 class="price-box__title">Department</h2>
       <image src = "{% static 'polls/Data/staff.png' %}" >
       </div>
     </div>
@@ -48,7 +71,9 @@
   <div class="row row--center">
     <div class="col-md-4 col-sm-4 price-box price-box--purple">
       <div class="price-box__wrap">
-      <image src = "{% static 'polls/Data/population.png' %}" >
+        <h2 class="price-box__title">Visitors vs Nations </h2>
+
+      <image src = "{% static 'polls/Data/viss.png' %}" >
       </div>
     </div>
   </div>
@@ -56,22 +81,9 @@
   <div class="row row--center">
     <div class="col-md-4 col-sm-4 price-box price-box--purple">
       <div class="price-box__wrap">
-      <image src = "{% static 'polls/Data/population.png' %}" >
-      </div>
-    </div>
-  </div>
-  <div class="row row--center">
-    <div class="col-md-4 col-sm-4 price-box price-box--purple">
-      <div class="price-box__wrap">
-      <image src = "{% static 'polls/Data/population.png' %}" >
-      </div>
-    </div>
-  </div>
-  <div class="row row--center">
-    <div class="col-md-4 col-sm-4 price-box price-box--blue">
-      
-      <div class="price-box__wrap">
-        <image src = "{% static 'polls/Data/population.png' %}" >
+        <h2 class="price-box__title"> Prevalent Diseases in Animals </h2>
+
+      <image src = "{% static 'polls/Data/dis.png' %}" >
       </div>
     </div>
   </div>
