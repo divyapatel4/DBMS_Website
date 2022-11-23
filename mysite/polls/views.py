@@ -174,3 +174,9 @@ def InsertVisitor(request):
         else:
             return HttpResponse("Invalid Insert")
         
+        
+        
+# Administration page :
+# This page can be used to add new tables or rows and columns to existing tables.
+# Also this can also be used to add new users to the database or add or modify exisiting users of database
+# This page can also be used to change the password of the user. 
