@@ -29,9 +29,7 @@ def comp(inp1, inp2, op):
 # DBMS_Website/mysite/polls/models.py
 
 def index(request):
-    showall =Staff.objects.all()
-    print(showall)
-    return render(request, 'polls/staff.html', {"data": showall})  
+    return render(request, 'polls/index.html', {"foo": "bar"})  
 
 
 def login(request):
@@ -108,8 +106,14 @@ def form(request):
                 return HttpResponse('Invalid Query')
         else:
             print(request.POST)
-            InsertAnimal(request)
-            return HttpResponse("Hello")
+            if (request.POST.getlist('tables')[0] == 'animal'):
+                InsertAnimal(request)
+                return HttpResponse("Inserted")
+            elif (request.POST.getlist('tables')[0] == 'visitor'):
+                InsertVisitor(request)
+                return HttpResponse("Inserted")
+            else:
+                return HttpResponse("Cannot Insert in this table")  
     else:
         context = {'foo': 'bar'}
         template = loader.get_template('polls/form.html')
@@ -153,3 +157,20 @@ def InsertAnimal(request):
         else:
             return HttpResponse("Invalid Insert")
 
+
+def InsertVisitor(request):
+    if request.method == 'POST':
+        if request.POST.get('visitor.citizen_id.val') and request.POST.get('visitor.name.val') and request.POST.get('visitor.nation.val') and request.POST.get('visitor."Gender".val') and request.POST.get('visitor."State".val') and request.POST.get('visitor."District".val') :
+            visitor = Visitor()
+            visitor.citizen_id = request.POST.get('visitor.citizen_id.val')
+            visitor.name = request.POST.get('visitor.name.val')
+            visitor.nation = request.POST.get('visitor.nation.val')
+            visitor.district = request.POST.get('visitor."District".val')
+            visitor.gender = request.POST.get('visitor."Gender".val')
+            visitor.state = request.POST.get('visitor."State".val')
+            visitor.save()
+            mess = "Visitor Inserted"
+            return render(request, 'polls/form.html', {"mess": mess})
+        else:
+            return HttpResponse("Invalid Insert")
+        

@@ -4,7 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Wildlife Sanctuary DataBase</title>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
+    <style>
+      html {
+        background-image: url("https://image.ibb.co/de6JzG/bitmap_1_1.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      #form1{
+        -webkit-border-radius: 10px 10px 10px 10px;
+        border-radius: 10px 10px 10px 10px;
+        align-content: left;
+        background: rgb(255, 255, 255);
+        padding: 30px;
+        width: 100%;
+        position: relative;
+        padding: 0px;
+        text-align: left;
+        /* font jumbotron */
+      }
+
+    </style>
 </head>
 <body>
     <!-- <ul>
@@ -18,28 +40,36 @@
             {% endfor %}
         {% endfor %}
     </ul> -->
-    <form action = "form" method="post">
-        {% csrf_token %}
-        {% for key, cols in  schema.items%}
-            {% for t in args%}
-                {%if key == t%}
-                    <input hidden type="text" name="tables" value="{{key}}" readonly="readonly">
-                    {% for col in cols%}
-                        <label for="{{key}}.{{col}}">{{col}}</label>
-                        {% comment %} <select name="{{key}}.{{col}}.op">
-                        <option value="l">Less than</option>
-                        <option value="g">Greater than</option>
-                        <option value="le">Less than equal to</option>
-                        <option value="ge">Greater than equal to</option>
-                        <option value="ee">Equal to</option>
-                        <option value="ne">Not equal to</option>
-                        </select> {% endcomment %}
-                        <input type="text" name="{{key}}.{{col}}.val" id="{{col}}">
-                    {%endfor%}
-                {% endif %}
+    <div id = "form1" style = "font-family:Ubuntu; text-align: center;">
+    
+        <form action = "form" method="post">
+            {% csrf_token %}
+            {% for key, cols in  schema.items%}
+                {% for t in args%}
+                    {%if key == t%}
+                        <input hidden type="text" name="tables" value="{{key}}" readonly="readonly">
+                        <table >
+
+                        {% for col in cols%}
+                            <tr>    
+                            <td style="border: 1px solid black,padding: 5px"><label for="{{key}}.{{col}}">{{col}}</label></td>
+                            {% comment %} <select name="{{key}}.{{col}}.op">
+                            <option value="l">Less than</option>
+                            <option value="g">Greater than</option>
+                            <option value="le">Less than equal to</option>
+                            <option value="ge">Greater than equal to</option>
+                            <option value="ee">Equal to</option>
+                            <option value="ne">Not equal to</option>
+                            </select> {% endcomment %}
+                            <td><input type="text" name="{{key}}.{{col}}.val" id="{{col}}" size = "200"></td>
+                            </tr>
+                        {%endfor%}
+                        </table>
+                    {% endif %}
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
-        <input type="submit" name = "submit" value="submit">
-    </form>
+            <input type="submit" name = "submit" value="submit" >
+        </form>
+    </div>
 </body>
 </html>
